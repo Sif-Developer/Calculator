@@ -99,7 +99,7 @@ function App() {
           <button onClick={() => updateCalc("0")}>0</button>
           <button onClick={() => updateCalc(".")}>.</button>
 
-          <button onClick={calculate}>=</button>
+          <button className="calculate-button" onClick={calculate}>=</button>
         </div>
       </div>
     </div>
