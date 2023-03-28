@@ -7,7 +7,9 @@ function App() {
 
   const ops = ["/", "*", "+", "-", "."];
 
-  
+  const updateCalc = value => {
+    setCalc(calc + value);
+  }
 
 
   const createDigits = () => {
@@ -23,23 +25,25 @@ function App() {
     <div className="App">
       <div className="calculator">
         <div className="display">
-          <span>(0)</span> 0
+          {result ? <span>(0)</span> : "" }
+          {calc || "0"}
         </div>
 
         <div className="operators">
-          <button>/</button>
-          <button>*</button>
-          <button>+</button>
-          <button>-</button>
+          <button onClick={() => updateCalc("/")} >/</button>
+          <button onClick={() => updateCalc("*")}>*</button>
+          <button onClick={() => updateCalc("+")} >+</button>
+          <button onClick={() => updateCalc("-")} >-</button>
 
           <button>DEL</button>
         </div>
 
         <div className="digits">
           {createDigits()}
-          <button>0</button>
-          <button>.</button>
-          <button>=</button>
+          <button  onClick={() => updateCalc("0")} >0</button>
+          <button onClick={() => updateCalc(".")} >.</button>
+
+          <button  >=</button>
         </div>
       </div>
     </div>
