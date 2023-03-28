@@ -1,17 +1,23 @@
+import { useState } from "react";
+
 function App() {
 
-const createDigits = () => {
-   const digits = [];
+  const[calc, setCalc] = useState("");
+  const [result, setResult] = useState("");
 
-   for (let number = 1; number < 10; number++) {
-    digits.push(
-      <button key={number}>{number}</button>
-    )
-   }
-   return digits;
-}
+  const ops = ["/", "*", "+", "-", "."];
+
+  
 
 
+  const createDigits = () => {
+    const digits = [];
+
+    for (let number = 1; number < 10; number++) {
+      digits.push(<button key={number}>{number}</button>);
+    }
+    return digits;
+  };
 
   return (
     <div className="App">
@@ -27,13 +33,13 @@ const createDigits = () => {
           <button>-</button>
 
           <button>DEL</button>
+        </div>
 
-          <div className="digits">
-            {createDigits()}
-            <button>0</button>
-            <button>.</button>
-            <button>=</button>
-          </div>
+        <div className="digits">
+          {createDigits()}
+          <button>0</button>
+          <button>.</button>
+          <button>=</button>
         </div>
       </div>
     </div>
