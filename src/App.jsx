@@ -43,6 +43,11 @@ function App() {
     const value = calc.slice(0, -1);
     setCalc(value)
   }
+
+  const clean = () => {
+    setCalc("");
+    setResult("")
+  }
   return (
     <div className="App">
       <div className="calculator">
@@ -57,6 +62,7 @@ function App() {
           <button onClick={() => updateCalc("+")}>+</button>
           <button onClick={() => updateCalc("-")}>-</button>
 
+          <button onClick={clean}>C</button>
           <button onClick={deleteLast}>DEL</button>
         </div>
 
