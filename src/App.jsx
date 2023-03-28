@@ -16,7 +16,11 @@ function App() {
     const digits = [];
 
     for (let number = 1; number < 10; number++) {
-      digits.push(<button key={number}>{number}</button>);
+      digits.push
+      (<button onClick={() => updateCalc(number.toString())} 
+      key={number}>
+        {number}
+      </button>);
     }
     return digits;
   };
