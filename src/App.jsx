@@ -33,9 +33,15 @@ function App() {
   };
   
   const calculate = () => {
-    setCalc(eval(calc).toString())
-    setResult("");
+    try {
+      setCalc(eval(calc).toString())
+      setResult("");
+    } catch (error) {
+      setCalc("");
+      setResult("Error");
+    }
   }
+  
 
   const deleteLast = () => {
     if(calc == ""){
