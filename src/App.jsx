@@ -37,12 +37,11 @@ function App() {
       setCalc(eval(calc).toString())
       setResult("");
     } catch (error) {
-      setCalc("");
-      setResult("Error");
+      setCalc("Error");
+      setResult("");
     }
   }
   
-
   const deleteLast = () => {
     if(calc == ""){
       return
