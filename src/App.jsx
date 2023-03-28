@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useEffect } from "react";
 function App() {
   const [calc, setCalc] = useState("");
   const [result, setResult] = useState("");
@@ -10,13 +10,13 @@ function App() {
     if (
       (ops.includes(value) && calc === "") ||
       (ops.includes(value) && ops.includes(calc.slice(-1)))
-    ){
+    ) {
       return;
     }
-      setCalc(calc + value);
-      if (!ops.includes(value)){
-        setResult(eval(calc +  value).toString())
-      }
+    setCalc(calc + value);
+    if (!ops.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
   };
 
   const createDigits = () => {
@@ -31,29 +31,51 @@ function App() {
     }
     return digits;
   };
-  
+
   const calculate = () => {
     try {
-      setCalc(eval(calc).toString())
+      setCalc(eval(calc).toString());
       setResult("");
     } catch (error) {
       setCalc("Error");
       setResult("");
     }
-  }
-  
+  };
+
   const deleteLast = () => {
-    if(calc == ""){
-      return
-    } 
+    if (calc == "") {
+      return;
+    }
     const value = calc.slice(0, -1);
-    setCalc(value)
-  }
+    setCalc(value);
+  };
 
   const clean = () => {
     setCalc("");
-    setResult("")
-  }
+    setResult("");
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const { key } = event;
+      if (/\d/.test(key)) {
+        updateCalc(key);
+      } else if (ops.includes(key)) {
+        updateCalc(key);
+      } else if (key === "Enter") {
+        calculate();
+      } else if (key === "Backspace") {
+        deleteLast();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   return (
     <div className="App">
       <div className="calculator">
